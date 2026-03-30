@@ -1,12 +1,23 @@
 ---
 name: docx
 description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill."
-license: Proprietary. LICENSE.txt has complete terms
+license: MIT
 ---
 
 # DOCX — Document Generation & Manipulation
 
 Generate and manipulate Word documents (.docx) from JSON specifications using the `nebo-office` binary. Compiled Rust — no JavaScript or Python dependencies.
+
+## Helper Skills
+
+| Skill | What it covers |
+|-------|---------------|
+| [`docx-tables`](../docx-tables/SKILL.md) | Table formatting, cell properties, colspan/rowspan |
+| [`docx-styles`](../docx-styles/SKILL.md) | Fonts, colors, heading styles, run properties, custom styles |
+| [`docx-headers-footers`](../docx-headers-footers/SKILL.md) | Headers, footers, page numbers, fields |
+| [`docx-lists`](../docx-lists/SKILL.md) | Bullets, numbered lists, nesting |
+| [`docx-images`](../docx-images/SKILL.md) | Images, captions, alignment |
+| [`docx-advanced`](../docx-advanced/SKILL.md) | TOC, comments, tracked changes, footnotes, section breaks |
 
 ## Commands
 
@@ -91,239 +102,12 @@ Full paragraph with formatting:
 }
 ```
 
-Paragraph with runs (mixed formatting):
-```json
-{
-  "paragraph": {
-    "runs": [
-      { "text": "Normal text " },
-      { "text": "bold red", "bold": true, "color": "DC2626" },
-      { "tab": true },
-      { "text": "after tab" }
-    ]
-  }
-}
-```
-
-### Run Properties
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `text` | string | Text content |
-| `bold` | bool | Bold text |
-| `italic` | bool | Italic text |
-| `underline` | bool | Underlined text |
-| `strike` | bool | Strikethrough |
-| `font` | string | Font name |
-| `size` | number | Font size in points |
-| `color` | string | Font color (hex, `"FF0000"`) |
-| `highlight` | string | Highlight color |
-| `link` | string | Hyperlink URL |
-| `superscript` | bool | Superscript |
-| `subscript` | bool | Subscript |
-| `all-caps` | bool | All capitals |
-| `small-caps` | bool | Small capitals |
-
-### Special Runs
-
-```json
-{ "tab": true }
-{ "break": "line" }
-{ "break": "page" }
-{ "field": "page-number" }
-{ "field": "total-pages" }
-{ "footnote": "1" }
-```
-
-### Bullets
-```json
-{
-  "bullets": [
-    "First item",
-    "Second item",
-    { "text": "Third item", "children": ["Nested A", "Nested B"] }
-  ]
-}
-```
-
-### Numbered Lists
-```json
-{ "numbered": ["Step 1", "Step 2", "Step 3"] }
-{ "numbered": ["New list", "Continues"], "restart": true }
-```
-
-### Table
-
-Simple form:
-```json
-{
-  "table": [
-    ["Item", "Qty", "Price"],
-    ["Widget A", "10", "$25"],
-    ["Widget B", "5", "$50"]
-  ],
-  "header-rows": 1
-}
-```
-
-Full form with formatting:
-```json
-{
-  "table": {
-    "columns": [{ "width": 3 }, { "width": 2 }, { "width": 2 }],
-    "header-rows": 1,
-    "rows": [
-      {
-        "cells": [
-          { "text": "Header", "bold": true, "shading": "4472C4", "color": "FFFFFF" },
-          { "text": "Qty", "bold": true, "shading": "4472C4", "color": "FFFFFF", "align": "center" },
-          { "text": "Price", "bold": true, "shading": "4472C4", "color": "FFFFFF", "align": "right" }
-        ]
-      },
-      {
-        "cells": ["Widget A", "10", "$25"]
-      }
-    ]
-  }
-}
-```
-
-### Cell Properties
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `text` | string | Cell text (supports **bold** markdown) |
-| `bold` | bool | Bold text |
-| `color` | string | Text color (hex) |
-| `shading` | string | Background color (hex) |
-| `align` | string | `"left"`, `"center"`, `"right"` |
-| `valign` | string | `"top"`, `"center"`, `"bottom"` |
-| `colspan` | number | Column span |
-| `rowspan` | number | Row span |
-
-### Image
-```json
-{ "image": "photo.png", "width": 4, "height": 3 }
-{ "image": "logo.png", "width": 2, "height": 1, "align": "center", "caption": "Figure 1" }
-```
-
-- Width/height in inches
-- Images loaded from `--assets` directory
-- Supported: png, jpg, jpeg, gif, bmp
-
 ### Page Break
 ```json
 { "page-break": true }
 ```
 
-### Section Break
-```json
-{
-  "section-break": {
-    "type": "next-page",
-    "columns": 2,
-    "column-gap": 0.5,
-    "page": { "orientation": "landscape" }
-  }
-}
-```
-
-Types: `next-page`, `continuous`, `even-page`, `odd-page`
-
-### Table of Contents
-```json
-{ "toc": true }
-{ "toc": { "title": "Contents", "depth": 3 } }
-```
-
-## Headers and Footers
-
-```json
-{
-  "headers": {
-    "default": [{ "paragraph": { "runs": [{ "text": "Company Name" }, { "tab": true }, { "field": "page-number" }] } }],
-    "first": []
-  },
-  "footers": {
-    "default": [{ "paragraph": { "runs": [{ "text": "Page " }, { "field": "page-number" }, { "text": " of " }, { "field": "total-pages" }], "align": "center" } }]
-  }
-}
-```
-
-Empty array `[]` suppresses header/footer on that page type (first, even).
-
-## Styles
-
-```json
-"styles": {
-  "font": "Arial",
-  "size": 12,
-  "color": "333333",
-  "headings": {
-    "font": "Arial",
-    "color": "1A3C5E",
-    "h1": { "size": 28, "bold": true },
-    "h2": { "size": 22, "bold": true },
-    "h3": { "size": 16, "bold": true, "italic": true }
-  },
-  "custom": {
-    "quote": {
-      "italic": true,
-      "indent": { "left": 0.5, "right": 0.5 },
-      "color": "666666"
-    }
-  }
-}
-```
-
-## Comments
-
-```json
-{
-  "comments": {
-    "c1": {
-      "author": "Claude",
-      "date": "2026-01-15T12:00:00Z",
-      "text": "Review this section",
-      "replies": [
-        { "author": "Alma", "date": "2026-01-16T09:00:00Z", "text": "Looks good" }
-      ]
-    }
-  }
-}
-```
-
-Reference in text with runs: `{ "comment-start": "c1" }` and `{ "comment-end": "c1" }`
-
-## Footnotes
-
-```json
-{
-  "footnotes": {
-    "1": "Source: Annual Report 2025",
-    "2": "See appendix for methodology"
-  }
-}
-```
-
-Reference in text: `"Revenue grew 15%[^1] using adjusted metrics[^2]."` or with runs: `{ "footnote": "1" }`
-
-## Tracked Changes
-
-```json
-{
-  "paragraph": {
-    "runs": [
-      { "text": "The term is " },
-      { "delete": "30", "author": "Claude", "date": "2026-01-15T00:00:00Z" },
-      { "insert": "60", "author": "Claude", "date": "2026-01-15T00:00:00Z" },
-      { "text": " days." }
-    ]
-  }
-}
-```
-
-## Metadata
+### Metadata
 
 ```json
 "metadata": {
@@ -334,6 +118,14 @@ Reference in text: `"Revenue grew 15%[^1] using adjusted metrics[^2]."` or with 
   "keywords": ["keyword1", "keyword2"],
   "category": "Reports"
 }
+```
+
+## Round-Trip
+
+```bash
+nebo-office docx unpack existing.docx -o spec.json --pretty
+# Edit spec.json
+nebo-office docx create spec.json -o modified.docx
 ```
 
 ## Example: Business Report
@@ -406,14 +198,6 @@ Reference in text: `"Revenue grew 15%[^1] using adjusted metrics[^2]."` or with 
     { "paragraph": "Director of Operations" }
   ]
 }
-```
-
-## Round-Trip
-
-```bash
-nebo-office docx unpack existing.docx -o spec.json --pretty
-# Edit spec.json
-nebo-office docx create spec.json -o modified.docx
 ```
 
 ## Critical Rules

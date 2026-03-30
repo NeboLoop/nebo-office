@@ -1,12 +1,19 @@
 ---
 name: pptx
 description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
-license: Proprietary. LICENSE.txt has complete terms
+license: MIT
 ---
 
 # PPTX — Presentation Generation
 
 Generate PowerPoint presentations (.pptx) from JSON specifications using the `nebo-office` binary. Compiled Rust — no JavaScript, no PptxGenJS.
+
+## Helper Skills
+
+| Skill | What it covers |
+|-------|---------------|
+| [`pptx-shapes`](../pptx-shapes/SKILL.md) | Shapes, backgrounds, transitions |
+| [`pptx-themes`](../pptx-themes/SKILL.md) | Theme colors, font settings |
 
 ## Commands
 
@@ -85,69 +92,18 @@ Used in `body`, `left`, and `right` arrays:
 { "image": "chart.png", "width": 4, "height": 3 }
 ```
 
-## Shapes
-
-All coordinates in inches (0,0 = top-left):
-
-```json
-"shapes": [
-  { "type": "rect", "x": 0.5, "y": 0.5, "w": 4, "h": 3, "fill": "4472C4", "opacity": 0.1 },
-  { "type": "text", "x": 1, "y": 1, "w": 3, "h": 2, "text": "Hello", "font-size": 24, "color": "1F4E79", "align": "center" },
-  { "type": "image", "image": "logo.png", "x": 5, "y": 0.5, "w": 4.5, "h": 4 },
-  { "type": "oval", "x": 2, "y": 2, "w": 1, "h": 1, "fill": "ED7D31" },
-  { "type": "line", "x": 0, "y": 3, "w": 10, "h": 0, "line-color": "CCCCCC", "line-width": 2 },
-  { "type": "rounded-rect", "x": 1, "y": 1, "w": 3, "h": 2, "fill": "E7E6E6", "corner-radius": 0.2 }
-]
-```
-
-### Shape Types
-
-| Type | Description | Extra Properties |
-|------|-------------|-----------------|
-| `rect` | Rectangle | `fill`, `opacity`, `line-color`, `line-width` |
-| `rounded-rect` | Rounded rectangle | + `corner-radius` |
-| `oval` | Ellipse | `fill`, `opacity` |
-| `line` | Line connector | `line-color`, `line-width` |
-| `text` | Text box | `text`, `font-size`, `color`, `bold`, `align`, `valign` |
-| `image` | Image | `image` (filename from assets dir) |
-
-## Backgrounds
-
-```json
-{ "color": "1F4E79" }
-{ "image": "bg.jpg" }
-{ "gradient": { "from": "1F4E79", "to": "4472C4", "angle": 90 } }
-```
-
-Dark backgrounds automatically get white text.
-
-## Transitions
-
-```json
-"transition": { "type": "fade", "duration": 0.5 }
-```
-
-Types: `fade`, `push`, `wipe`
-
 ## Speaker Notes
 
 ```json
 "notes": "Remember to mention the Q4 highlights here."
 ```
 
-## Theme Colors
+## Round-Trip
 
-```json
-"theme": {
-  "colors": {
-    "primary": "1F4E79",
-    "accent1": "4472C4",
-    "accent2": "ED7D31",
-    "background": "FFFFFF",
-    "text": "333333"
-  },
-  "font": "Calibri"
-}
+```bash
+nebo-office pptx unpack existing.pptx -o spec.json --pretty
+# Edit spec.json
+nebo-office pptx create spec.json -o modified.pptx
 ```
 
 ## Example: Pitch Deck
@@ -235,14 +191,6 @@ Types: `fade`, `push`, `wipe`
     }
   ]
 }
-```
-
-## Round-Trip
-
-```bash
-nebo-office pptx unpack existing.pptx -o spec.json --pretty
-# Edit spec.json
-nebo-office pptx create spec.json -o modified.pptx
 ```
 
 ## Critical Rules

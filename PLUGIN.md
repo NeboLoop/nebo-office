@@ -16,3 +16,19 @@ Compiled Rust binary for creating, editing, and validating Word, Excel, and Powe
 | `docx` | Create, unpack, and validate Word documents (.docx) |
 | `xlsx` | Create, unpack, and validate Excel spreadsheets (.xlsx) |
 | `pptx` | Create, unpack, and validate PowerPoint presentations (.pptx) |
+
+## Helpers
+
+| Skill | What it covers |
+|-------|---------------|
+| `docx-tables` | Table formatting, cell properties, colspan/rowspan |
+| `docx-styles` | Fonts, colors, heading styles, run properties, custom styles |
+| `docx-headers-footers` | Headers, footers, page numbers, fields |
+| `docx-lists` | Bullets, numbered lists, nesting |
+| `docx-images` | Images, captions, alignment |
+| `docx-advanced` | TOC, comments, tracked changes, footnotes, section breaks |
+| `xlsx-formulas` | Formulas, named ranges |
+| `xlsx-formatting` | Rich cell properties, row defaults, column definitions, conditional formatting, number formats |
+| `xlsx-features` | Freeze panes, merged cells, auto-filter, data validation, print setup |
+| `pptx-shapes` | Shapes, backgrounds, transitions |
+| `pptx-themes` | Theme colors, font settings |
