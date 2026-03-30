@@ -5,4 +5,6 @@ dist/**/linux-arm64/
 dist/**/linux-amd64/
 dist/**/windows-arm64/
 dist/**/windows-amd64/
+dist/**/nebo-office
+dist/**/nebo-pdf
 *.DS_Store
