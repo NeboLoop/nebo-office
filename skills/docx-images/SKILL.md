@@ -2,6 +2,10 @@
 name: docx-images
 description: "DOCX images: embedding, sizing, alignment, captions."
 license: MIT
+triggers:
+  - docx image
+  - embed image
+  - image caption
 ---
 
 # docx +images

@@ -2,6 +2,11 @@
 name: docx-headers-footers
 description: "DOCX headers and footers: page numbers, fields, first-page suppression."
 license: MIT
+triggers:
+  - page header
+  - page footer
+  - page number
+  - header footer
 ---
 
 # docx +headers-footers

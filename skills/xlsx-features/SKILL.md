@@ -2,6 +2,13 @@
 name: xlsx-features
 description: "XLSX features: freeze panes, merged cells, auto-filter, data validation, print setup."
 license: MIT
+triggers:
+  - freeze pane
+  - merged cell
+  - auto-filter
+  - autofilter
+  - data validation
+  - print setup
 ---
 
 # xlsx +features

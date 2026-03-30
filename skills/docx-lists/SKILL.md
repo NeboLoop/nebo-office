@@ -2,6 +2,11 @@
 name: docx-lists
 description: "DOCX lists: bullets, numbered lists, nesting, restart numbering."
 license: MIT
+triggers:
+  - bullet list
+  - numbered list
+  - bulleted
+  - list items
 ---
 
 # docx +lists

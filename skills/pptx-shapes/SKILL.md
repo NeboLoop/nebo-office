@@ -2,6 +2,11 @@
 name: pptx-shapes
 description: "PPTX shapes: rectangles, ovals, lines, text boxes, images, backgrounds, transitions."
 license: MIT
+triggers:
+  - slide shape
+  - text box
+  - slide background
+  - slide transition
 ---
 
 # pptx +shapes

@@ -2,6 +2,12 @@
 name: docx
 description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill."
 license: MIT
+triggers:
+  - docx
+  - .docx
+  - word doc
+  - word document
+  - word file
 ---
 
 # DOCX — Document Generation & Manipulation

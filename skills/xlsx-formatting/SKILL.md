@@ -2,6 +2,11 @@
 name: xlsx-formatting
 description: "XLSX formatting: rich cell properties, row defaults, column definitions, conditional formatting, number formats."
 license: MIT
+triggers:
+  - cell format
+  - conditional format
+  - number format
+  - column width
 ---
 
 # xlsx +formatting

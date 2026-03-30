@@ -2,6 +2,12 @@
 name: docx-styles
 description: "DOCX styles: fonts, colors, heading styles, run properties, custom styles, mixed formatting with runs."
 license: MIT
+triggers:
+  - docx style
+  - heading style
+  - run properties
+  - custom style
+  - mixed formatting
 ---
 
 # docx +styles

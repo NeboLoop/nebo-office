@@ -2,6 +2,11 @@
 name: docx-tables
 description: "DOCX tables: simple and full-form tables, cell properties, column widths, colspan, rowspan, header rows."
 license: MIT
+triggers:
+  - docx table
+  - word table
+  - colspan
+  - rowspan
 ---
 
 # docx +tables

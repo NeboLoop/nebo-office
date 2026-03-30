@@ -2,6 +2,11 @@
 name: pptx-themes
 description: "PPTX themes: color palettes, font settings."
 license: MIT
+triggers:
+  - slide theme
+  - color palette
+  - theme colors
+  - presentation theme
 ---
 
 # pptx +themes

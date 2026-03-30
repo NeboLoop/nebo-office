@@ -2,6 +2,10 @@
 name: xlsx-formulas
 description: "XLSX formulas: Excel formula cells, named ranges."
 license: MIT
+triggers:
+  - excel formula
+  - spreadsheet formula
+  - named range
 ---
 
 # xlsx +formulas

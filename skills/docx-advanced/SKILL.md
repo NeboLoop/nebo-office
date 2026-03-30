@@ -2,6 +2,13 @@
 name: docx-advanced
 description: "DOCX advanced features: table of contents, comments, tracked changes, footnotes, section breaks."
 license: MIT
+triggers:
+  - table of contents
+  - toc
+  - tracked changes
+  - footnote
+  - section break
+  - docx comment
 ---
 
 # docx +advanced
