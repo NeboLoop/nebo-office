@@ -1,0 +1,16 @@
+[package]
+name = "nebo-pptx"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+quick-xml.workspace = true
+zip.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+base64.workspace = true
+chrono.workspace = true
+nebo-spec.workspace = true
+nebo-office-core.workspace = true

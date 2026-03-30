@@ -1,0 +1,10 @@
+[package]
+name = "nebo-office-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+quick-xml.workspace = true
+zip.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true

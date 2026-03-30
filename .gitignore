@@ -1,0 +1,8 @@
+target/
+dist/**/darwin-arm64/
+dist/**/darwin-amd64/
+dist/**/linux-arm64/
+dist/**/linux-amd64/
+dist/**/windows-arm64/
+dist/**/windows-amd64/
+*.DS_Store

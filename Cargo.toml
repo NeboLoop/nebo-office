@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = ["crates/cli", "crates/spec", "crates/docx", "crates/xlsx", "crates/pptx", "crates/office-core"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+quick-xml = { version = "0.37", features = ["serialize"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+anyhow = "1"
+base64 = "0.22"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+
+# workspace crates
+nebo-spec = { path = "crates/spec" }
+nebo-docx = { path = "crates/docx" }
+nebo-xlsx = { path = "crates/xlsx" }
+nebo-pptx = { path = "crates/pptx" }
+nebo-office-core = { path = "crates/office-core" }

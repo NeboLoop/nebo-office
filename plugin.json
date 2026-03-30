@@ -1,0 +1,47 @@
+{
+  "id": "",
+  "slug": "nebo-office",
+  "name": "Nebo Office",
+  "version": "0.1.0",
+  "description": "Document generation — Word (.docx), Excel (.xlsx), PowerPoint (.pptx)",
+  "author": "NeboLoop",
+  "platforms": {
+    "macos-arm64": {
+      "binaryName": "nebo-office",
+      "sha256": "",
+      "signature": "",
+      "size": 0,
+      "downloadUrl": ""
+    },
+    "macos-amd64": {
+      "binaryName": "nebo-office",
+      "sha256": "",
+      "signature": "",
+      "size": 0,
+      "downloadUrl": ""
+    },
+    "linux-arm64": {
+      "binaryName": "nebo-office",
+      "sha256": "",
+      "signature": "",
+      "size": 0,
+      "downloadUrl": ""
+    },
+    "linux-amd64": {
+      "binaryName": "nebo-office",
+      "sha256": "",
+      "signature": "",
+      "size": 0,
+      "downloadUrl": ""
+    },
+    "windows-amd64": {
+      "binaryName": "nebo-office.exe",
+      "sha256": "",
+      "signature": "",
+      "size": 0,
+      "downloadUrl": ""
+    }
+  },
+  "signingKeyId": "",
+  "envVar": "NEBO_OFFICE_BIN"
+}

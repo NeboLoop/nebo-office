@@ -1,0 +1,25 @@
+[package]
+name = "nebo-office"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "nebo-office"
+path = "src/main.rs"
+
+[features]
+default = ["docx", "xlsx", "pptx"]
+docx = ["dep:nebo-docx"]
+xlsx = ["dep:nebo-xlsx"]
+pptx = ["dep:nebo-pptx"]
+
+[dependencies]
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+nebo-spec.workspace = true
+nebo-office-core.workspace = true
+nebo-docx = { workspace = true, optional = true }
+nebo-xlsx = { workspace = true, optional = true }
+nebo-pptx = { workspace = true, optional = true }
