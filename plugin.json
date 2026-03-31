@@ -6,14 +6,14 @@
   "description": "Document generation — Word (.docx), Excel (.xlsx), PowerPoint (.pptx)",
   "author": "NeboLoop",
   "platforms": {
-    "macos-arm64": {
+    "darwin-arm64": {
       "binaryName": "nebo-office",
       "sha256": "",
       "signature": "",
       "size": 0,
       "downloadUrl": ""
     },
-    "macos-amd64": {
+    "darwin-amd64": {
       "binaryName": "nebo-office",
       "sha256": "",
       "signature": "",

@@ -8,7 +8,7 @@ manifest: ## Show plugin.json
 
 upload: ## Upload plugin binaries to NeboLoop (requires PLUGIN_ID and TOKEN env vars)
 	@if [ -z "$$PLUGIN_ID" ] || [ -z "$$TOKEN" ]; then echo "Usage: PLUGIN_ID=... TOKEN=... make upload"; exit 1; fi
-	@for PLATFORM in macos-arm64 macos-amd64 linux-arm64 linux-amd64 windows-amd64; do \
+	@for PLATFORM in darwin-arm64 darwin-amd64 linux-arm64 linux-amd64 windows-amd64; do \
 		BINARY=$$(ls dist/plugin/$$PLATFORM/nebo-office* 2>/dev/null | head -1); \
 		if [ -n "$$BINARY" ]; then \
 			echo "Uploading $$PLATFORM..."; \
